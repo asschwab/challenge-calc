@@ -1,8 +1,8 @@
 # challenge-calc
-##Summary
+## Summary
 Generates simple arithmetic problems for add, subtract, multiply, divide for pupils to solve.
 
-##Program args
+## Program args
 
 ```java
   // how many calculation challenges should be generated (arg 1)
