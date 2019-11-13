@@ -105,25 +105,23 @@ public class CalcChallenge {
 		String op = null;
 		if (opIn == null) {
 			op = drawOperator();
-		} else if (!isKnownOp(op)){
+		} else if (!isKnownOp(opIn)){
 			op = drawOperator();
 		} else {
 			op = opIn;
 			
 		}
 		int maxNumberToBeUsed = maxOperand + 1;		
-		CalcChallenge cc = createCalcChallenge(randomizer.nextInt(maxNumberToBeUsed),randomizer.nextInt(maxNumberToBeUsed),op, maxResult, withResults, includeNegativeNumbers);
-		int j = 0;
 		int firstOp, secondOp, firstOpNegative, secondOpNegative;
+		firstOp = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
+		secondOp = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
+		CalcChallenge cc = createCalcChallenge(firstOp,secondOp,op, maxResult, withResults, includeNegativeNumbers);
+		int j = 0;
+		
 		while (cc == null || drawn.contains(cc)) {
-			firstOpNegative = (includeNegativeNumbers && randomizer.nextInt(6)  == 0) ? -1 : 1;
-			firstOp = randomizer.nextInt(maxNumberToBeUsed) * firstOpNegative;		
-			secondOpNegative = (includeNegativeNumbers && randomizer.nextInt(6) == 0) ? -1 : 1;
-			secondOp = randomizer.nextInt(maxNumberToBeUsed) * secondOpNegative;
-			if (!includeZero) {
-				firstOp = Math.max(firstOp, 1);
-				secondOp = Math.max(secondOp, 1);
-			}
+				
+			firstOp = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
+			secondOp = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
 			cc = createCalcChallenge(firstOp,secondOp,op, maxResult, withResults, includeNegativeNumbers);
 			j++;
 			if (j > 100 && cc != null) {
@@ -133,6 +131,19 @@ public class CalcChallenge {
 		}
 		drawn.add(cc);
 		return cc;
+	}
+
+	private static int getOp(boolean includeNegativeNumbers, boolean includeZero, int maxNumberToBeUsed, String op) {
+		int operand, operandNegative;
+		operandNegative = (includeNegativeNumbers && randomizer.nextInt(6)  == 0) ? -1 : 1;
+		operand = randomizer.nextInt(maxNumberToBeUsed) * operandNegative;	
+		if (!includeZero) 
+			operand = operand == 0 ? operand = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op) :operand;
+		if (operand == 1 && randomizer.nextInt(10) != 0 && ("/".equals(op) || "*".equals(op))) {
+			// prevents too many trivial divide or multiply by 1
+			operand = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
+		}
+		return operand;
 	}
 
 	public static boolean isKnownOp(String op) {
