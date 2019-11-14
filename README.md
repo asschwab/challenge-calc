@@ -49,7 +49,7 @@ Generates simple arithmetic problems for add, subtract, multiply, divide for pup
 		int maxOperand = DEFAULT_MAX_OPERAND;
 		int maxResult = DEFAULT_MAX_RESULT;
 		boolean withResults = WITH_RESULTS;
-		String theOneOperand = null;
+		String theOneOp = null;
 		boolean includeZero = DEFAULT_INCLUDE_ZERO;
 		boolean includeNegativeNumbers = DEFAULT_INCLUDE_NEGATIVES;
 		
@@ -75,9 +75,9 @@ Generates simple arithmetic problems for add, subtract, multiply, divide for pup
 			}
       // should we use only one specific operation out of ("+", "-", "*", "/")?
 			if (args.length > 6) {
-				theOneOperand = args[6];
-				if (!CalcChallenge.isKnownOp(theOneOperand)) {
-					throw new IllegalArgumentException(theOneOperand + " is not supported.");
+				theOneOp = args[6];
+				if (!CalcChallenge.isKnownOp(theOneOp)) {
+					throw new IllegalArgumentException(theOneOp + " is not supported.");
 				}
 			}
 ```
