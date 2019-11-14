@@ -2,6 +2,33 @@
 ## Summary
 Generates simple arithmetic problems for add, subtract, multiply, divide for pupils to solve.
 
+## Result example
+```
+2 / 2                               =                  
+2 + 4                               =                  
+4 * 4                               =                  
+9 - 3                               =                  
+4 * 1                               =                  
+9 * 3                               =                  
+6 * 6                               =                  
+9 * 9                               =                  
+6 - 3                               =                  
+8 - 8                               =                  
+9 + 5                               =                  
+5 * 5                               =                  
+8 * 4                               =                  
+10 * 10                             =                  
+8 * 4                               =                  
+8 + 3                               =                  
+10 * 5                              =                  
+10 + 3                              =                  
+2 - 2                               =                  
+2 / 2                               =                  
+4 / 4                               =                  
+7 * 7                               =                  
+9 - 1                               =                  
+```
+
 ## Program args
 
 ```java
