@@ -139,7 +139,7 @@ public class CalcChallenge {
 		operand = randomizer.nextInt(maxNumberToBeUsed) * operandNegative;	
 		if (!includeZero) 
 			operand = operand == 0 ? operand = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op) :operand;
-		if (operand == 1 && randomizer.nextInt(10) != 0 && ("/".equals(op) || "*".equals(op))) {
+		if (operand == 1 && randomizer.nextInt(5) != 0 && ("/".equals(op) || "*".equals(op))) {
 			// prevents too many trivial divide or multiply by 1
 			operand = getOp(includeNegativeNumbers, includeZero, maxNumberToBeUsed, op);
 		}
